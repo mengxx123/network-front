@@ -4,6 +4,7 @@ import Router from 'vue-router'
 const Ip = resolve => require(['@/views/Ip'], resolve)
 const About = resolve => require(['@/views/About'], resolve)
 const Port = resolve => require(['@/views/Port'], resolve)
+const UserAgent = resolve => require(['@/views/UserAgent'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -20,6 +21,10 @@ let routes = [
     {
         path: '/about',
         component: About
+    },
+    {
+        path: '/userAgent',
+        component: UserAgent
     },
     {
         path: '*',
