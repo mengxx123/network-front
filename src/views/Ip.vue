@@ -1,16 +1,8 @@
 <template>
-    <my-page title="IP 查询">
+    <my-page title="IP 查询" :page="page">
         <div class="card">
-            本机 IP： <span class="strong">113.111.7.13</span>
+            本机 IP： <span class="strong">{{ ip }}</span>
         </div>
-        <ui-article class="article ui-article">
-            <h2>工具介绍</h2>
-            <p>查看本地 IP 的一个小工具</p>
-
-            <h2>相关信息</h2>
-            <p><strong>电脑查看本机 IP 方法：</strong></p>
-            <p>打开命令行（cmd），在里面输入 ipconfig。</p>
-        </ui-article>
     </my-page>
 </template>
 
@@ -18,6 +10,31 @@
     export default {
         data () {
             return {
+                ip: '加载中...',
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            to: '/ip/help'
+                        }
+                    ]
+                }
+            }
+        },
+        mounted() {
+            this.init()
+        },
+        methods: {
+            init() {
+                this.$http.get('http://tool2.yunser.com/demo/ip.php').then(
+                    response => {
+                        let data = response.data
+                        this.ip = data
+                    },
+                    response => {
+                        console.log(response)
+                    })
             }
         }
     }

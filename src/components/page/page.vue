@@ -1,5 +1,5 @@
 <template>
-    <ui-page :title="title || page.title" ref="page">
+    <ui-page :title="title || page.title" ref="page" :page="page" :backable="backable">
         <div slot="drawer">
             <ui-appbar title=""></ui-appbar>
             <ui-list @itemClick="toggle()">
@@ -11,6 +11,9 @@
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
                 <ui-list-item title="User Agent 分析" to="/userAgent">
+                    <ui-icon slot="left" value="grade"/>
+                </ui-list-item>
+                <ui-list-item title="Cron 表达式验证" to="/cron/verification">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
                 <ui-list-item title="关于" href="http://about.yunser.com/" target="_blank">
