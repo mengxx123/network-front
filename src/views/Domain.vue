@@ -1,5 +1,5 @@
 <template>
-    <my-page title="域名查 IP">
+    <my-page title="域名查 IP" :page="page">
         <div>
             <ui-text-field v-model="domain" label="域名" hintText="输入域名" />
             <br>
@@ -22,7 +22,7 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/ip/help'
+                            to: '/domain/help'
                         }
                     ]
                 }
