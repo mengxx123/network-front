@@ -6,6 +6,9 @@
                 <ui-list-item title="IP 查询" to="/">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
+                <ui-list-item title="域名查 IP" to="/domain">
+                    <ui-icon slot="left" value="grade"/>
+                </ui-list-item>
                 <ui-divider />
                 <ui-list-item title="端口扫描" to="/port">
                     <ui-icon slot="left" value="grade"/>

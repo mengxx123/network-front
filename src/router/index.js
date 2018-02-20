@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 const Ip = resolve => require(['@/views/Ip'], resolve)
 const IpHelp = resolve => require(['@/views/IpHelp'], resolve)
+const Domain = resolve => require(['@/views/Domain'], resolve)
 const About = resolve => require(['@/views/About'], resolve)
 const UserAgent = resolve => require(['@/views/UserAgent'], resolve)
 const UserAgentHelp = resolve => require(['@/views/UserAgentHelp'], resolve)
@@ -22,6 +23,10 @@ let routes = [
     {
         path: '/ip/help',
         component: IpHelp
+    },
+    {
+        path: '/domain',
+        component: Domain
     },
     {
         path: '/port',
