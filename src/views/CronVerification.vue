@@ -51,7 +51,7 @@
                 if (num < 1) {
                     num = 1
                 }
-                let url = 'http://tool2.yunser.com/demo/cron.php?cron=' + this.cron + '&number=' + num
+                let url = 'https://phpapi.yunser.com/cron.php?cron=' + this.cron + '&number=' + num
                 this.$http.get(url).then(
                     response => {
                         let data = response.data

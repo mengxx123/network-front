@@ -37,7 +37,7 @@
         },
         methods: {
             init() {
-                this.$http.get('http://tool2.yunser.com/demo/ip.php').then(
+                this.$http.get('https://phpapi.yunser.com/ip.php').then(
                     response => {
                         let data = response.data
                         this.ip = data
@@ -48,7 +48,7 @@
                     })
             },
             getDetail(ip) {
-                this.$http.get('http://node.api.yunser.com/ip?ip=' + ip).then(
+                this.$http.get('https://nodeapi.yunser.com/ip?ip=' + ip).then(
                     response => {
                         let data = response.data
                         console.log(data)

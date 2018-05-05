@@ -36,7 +36,7 @@
                 this.query()
             },
             getDetail(domain) {
-                this.$http.get('http://php.api.yunser.com/host.php?host=' + domain).then(
+                this.$http.get('https://phpapi.yunser.com/host.php?host=' + domain).then(
                     response => {
                         let data = response.data
                         console.log(data)

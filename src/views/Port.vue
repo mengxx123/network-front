@@ -53,7 +53,7 @@
         },
         methods: {
             scan: function () {
-                let url = 'http://tool2.yunser.com/demo/port.php?port=' + this.port + '&domain=' + this.domain
+                let url = 'https://phpapi.yunser.com/port.php?port=' + this.port + '&domain=' + this.domain
                 this.$http.get(url).then(
                     response => {
                         let data = response.data
