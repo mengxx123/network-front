@@ -1,14 +1,15 @@
 <template>
     <my-page title="IP 查询" :page="page">
         <div class="card">
-            你的 IP： <span class="strong">{{ ip }}</span>
+            你的 IP： <span class="strong">{{ userIp }}</span>
         </div>
         <div>
             <ui-text-field v-model="ip" label="IP 地址" hintText="输入 IP 地址" />
             <br>
             <ui-raised-button label="查询" primary @click="query" />
         </div>
-        <div class="result" v-if="detail">
+        <div class="loading" v-if="loading">加载中...</div>
+        <div class="result" v-if="!loading && detail">
             <div>所在地区：{{ detail.country }} {{ detail.region }} {{ detail.city }}</div>
             <div>{{ detail.isp }}</div>
         </div>
@@ -19,7 +20,9 @@
     export default {
         data () {
             return {
-                ip: '加载中...',
+                loading: false,
+                userIp: '加载中...',
+                ip: '',
                 detail: null,
                 page: {
                     menu: [
@@ -40,7 +43,7 @@
                 this.$http.get('https://phpapi.yunser.com/ip.php').then(
                     response => {
                         let data = response.data
-                        this.ip = data
+                        this.ip = this.userIp = data
                         this.getDetail(this.ip)
                     },
                     response => {
@@ -48,17 +51,26 @@
                     })
             },
             getDetail(ip) {
+                this.loading = true
                 this.$http.get('https://nodeapi.yunser.com/ip?ip=' + ip).then(
                     response => {
                         let data = response.data
                         console.log(data)
+                        this.loading = false
                         this.detail = data
                     },
                     response => {
+                        this.loading = false
                         console.log(response)
                     })
             },
             query() {
+                if (!this.ip) {
+                    this.$message({
+                        text: '请输入 IP'
+                    })
+                    return
+                }
                 this.getDetail(this.ip)
             }
         }
@@ -66,6 +78,9 @@
 </script>
 
 <style lang="scss" scoped>
+    .loading {
+        margin-top: 16px;
+    }
     .card {
         width: 320px;
         margin-bottom: 16px;

@@ -32,6 +32,7 @@
     export default {
         data() {
             return {
+                embed: false,
                 open: false,
                 docked: true
             }
@@ -57,6 +58,9 @@
                 type: Boolean,
                 default: false
             }
+        },
+        mounted() {
+            this.embed = this.$route.query.embed || false
         },
         methods: {
             toggle() {

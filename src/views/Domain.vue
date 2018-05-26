@@ -5,7 +5,8 @@
             <br>
             <ui-raised-button label="查询" primary @click="query" />
         </div>
-        <div class="result" v-if="detail">
+        <div class="loading" v-if="loading">记载中...</div>
+        <div class="result" v-if="!loading && detail">
             <div>IP：{{ detail }}</div>
         </div>
     </my-page>
@@ -15,6 +16,7 @@
     export default {
         data () {
             return {
+                loading: false,
                 domain: 'yunser.com',
                 detail: null,
                 page: {
@@ -36,17 +38,26 @@
                 this.query()
             },
             getDetail(domain) {
+                this.loading = true
                 this.$http.get('https://phpapi.yunser.com/host.php?host=' + domain).then(
                     response => {
                         let data = response.data
                         console.log(data)
                         this.detail = data
+                        this.loading = false
                     },
                     response => {
                         console.log(response)
+                        this.loading = false
                     })
             },
             query() {
+                if (!this.domain) {
+                    this.$message({
+                        text: '请输入域名'
+                    })
+                    return
+                }
                 this.getDetail(this.domain)
             }
         }
@@ -54,6 +65,9 @@
 </script>
 
 <style lang="scss" scoped>
+    .loading {
+        margin-top: 16px;
+    }
     .card {
         width: 320px;
         margin-bottom: 16px;

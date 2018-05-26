@@ -14,6 +14,7 @@
         <div class="form-group">
             <ui-raised-button class="btn" label="执行" primary @click="run" />
         </div>
+        <div class="loading" v-if="loading">记载中...</div>
         <div v-if="times.length">
             <div>执行结果：</div>
             <div>
@@ -29,6 +30,7 @@
     export default {
         data () {
             return {
+                loading: false,
                 cron: '0 */12 * * *',
                 number: 10,
                 times: [],
@@ -47,18 +49,29 @@
         },
         methods: {
             updateTime(cron) {
+                if (!this.cron) {
+                    this.$message({
+                        text: 'Crontab 表达式不能为空'
+                    })
+                    return
+                }
+
                 let num = (this.number > 50) ? 50 : this.number
                 if (num < 1) {
-                    num = 1
+                    this.number = num = 1
                 }
+                this.times = []
+                this.loading = true
                 let url = 'https://phpapi.yunser.com/cron.php?cron=' + this.cron + '&number=' + num
                 this.$http.get(url).then(
                     response => {
                         let data = response.data
                         this.times = data.data
+                        this.loading = false
                     },
                     response => {
                         console.log(response)
+                        this.loading = false
                     })
             },
             run: function () {

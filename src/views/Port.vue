@@ -7,9 +7,10 @@
             <ui-text-field v-model="port" label="扫描端口（以英文逗号,分割）：" multiLine :rows="4" labelFloat/>
         </div>
         <div>
-            <ui-raised-button label="开始扫描" primary @click="scan" />（速度比较慢，请耐心等待）
+            <ui-raised-button label="开始扫描" primary @click="scan" />
         </div>
-        <ui-article v-if="result">
+        <div class="loading" v-if="loading">记载中...</div>
+        <ui-article v-if="!loading && result">
             <h2>扫描结果</h2>
             <p v-if="result.data.length">扫描 {{ domain }} 端口共 {{ result.number }} 个, 耗时 {{ result.time }} 毫秒!</p>
             <table>
@@ -34,6 +35,7 @@
     export default {
         data () {
             return {
+                loading: false,
                 port: ' 80,8080,3128,8081,9080,1080,21,23,443,69,22,25,110,7001,9090,3389,1521,1158,2100,1433,3306',
                 domain: 'www.baidu.com',
                 result: null,
@@ -53,14 +55,29 @@
         },
         methods: {
             scan: function () {
+                if (!this.domain) {
+                    this.$message({
+                        text: '请输入域名'
+                    })
+                    return
+                }
+                if (!this.port) {
+                    this.$message({
+                        text: '请输入端口号'
+                    })
+                    return
+                }
+                this.loading = true
                 let url = 'https://phpapi.yunser.com/port.php?port=' + this.port + '&domain=' + this.domain
                 this.$http.get(url).then(
                     response => {
                         let data = response.data
                         console.log(data)
                         this.result = data
+                        this.loading = false
                     },
                     response => {
+                        this.loading = false
                         console.log(response)
                     })
             }
@@ -69,6 +86,9 @@
 </script>
 
 <style scoped>
+    .loading {
+        margin-top: 16px;
+    }
     .domain {
         display: inline-block;
         width: 160px;
