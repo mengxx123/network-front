@@ -1,7 +1,7 @@
 <template>
     <my-page title="域名查 IP" :page="page">
         <div>
-            <ui-text-field v-model="domain" label="域名" hintText="输入域名" />
+            <ui-text-field v-model="domain" label="域名" hintText="xxx.com" />
             <br>
             <ui-raised-button label="查询" primary @click="query" />
         </div>
@@ -17,7 +17,7 @@
         data () {
             return {
                 loading: false,
-                domain: 'yunser.com',
+                domain: '',
                 detail: null,
                 page: {
                     menu: [
@@ -35,7 +35,11 @@
         },
         methods: {
             init() {
-                this.query()
+                let data = this.$route.query.data
+                if (data) {
+                    this.domain = data
+                    this.query()
+                }
             },
             getDetail(domain) {
                 this.loading = true
@@ -54,6 +58,7 @@
             query() {
                 if (!this.domain) {
                     this.$message({
+                        type: 'danger',
                         text: '请输入域名'
                     })
                     return

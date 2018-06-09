@@ -1,7 +1,7 @@
 <template>
     <my-page title="端口扫描" :page="page">
         <div>
-            <ui-text-field v-model="domain" label="扫描网站域名或 IP：" labelFloat/>
+            <ui-text-field v-model="domain" label="扫描网站的域名或 IP："/>
         </div>
         <div>
             <ui-text-field v-model="port" label="扫描端口（以英文逗号,分割）：" multiLine :rows="4" labelFloat/>
@@ -9,7 +9,7 @@
         <div>
             <ui-raised-button label="开始扫描" primary @click="scan" />
         </div>
-        <div class="loading" v-if="loading">记载中...</div>
+        <div class="loading" v-if="loading">加载中...</div>
         <ui-article v-if="!loading && result">
             <h2>扫描结果</h2>
             <p v-if="result.data.length">扫描 {{ domain }} 端口共 {{ result.number }} 个, 耗时 {{ result.time }} 毫秒!</p>
@@ -37,7 +37,7 @@
             return {
                 loading: false,
                 port: ' 80,8080,3128,8081,9080,1080,21,23,443,69,22,25,110,7001,9090,3389,1521,1158,2100,1433,3306',
-                domain: 'www.baidu.com',
+                domain: '',
                 result: null,
                 page: {
                     menu: [
@@ -51,10 +51,14 @@
             }
         },
         mounted() {
-
+            let data = this.$route.query.data
+            if (data) {
+                this.domain = data
+                this.scan()
+            }
         },
         methods: {
-            scan: function () {
+            scan() {
                 if (!this.domain) {
                     this.$message({
                         text: '请输入域名'

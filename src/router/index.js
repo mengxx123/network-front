@@ -19,6 +19,10 @@ Vue.use(Router)
 let routes = [
     {
         path: '/',
+        redirect: '/ip'
+    },
+    {
+        path: '/ip',
         component: Ip
     },
     {

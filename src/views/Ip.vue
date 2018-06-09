@@ -36,6 +36,11 @@
             }
         },
         mounted() {
+            let data = this.$route.query.data
+            if (data) {
+                this.ip = data
+                this.getDetail()
+            }
             this.init()
         },
         methods: {
@@ -43,7 +48,10 @@
                 this.$http.get('https://phpapi.yunser.com/ip.php').then(
                     response => {
                         let data = response.data
-                        this.ip = this.userIp = data
+                        if (!this.ip) {
+                            this.ip = data
+                        }
+                        this.userIp = data
                         this.getDetail(this.ip)
                     },
                     response => {

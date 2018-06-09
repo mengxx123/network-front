@@ -14,7 +14,7 @@
         <div class="form-group">
             <ui-raised-button class="btn" label="执行" primary @click="run" />
         </div>
-        <div class="loading" v-if="loading">记载中...</div>
+        <div class="loading" v-if="loading">加载中...</div>
         <div v-if="times.length">
             <div>执行结果：</div>
             <div>
@@ -46,6 +46,11 @@
             }
         },
         mounted() {
+            let data = this.$route.query.data
+            if (data) {
+                this.cron = data
+                this.run()
+            }
         },
         methods: {
             updateTime(cron) {
@@ -74,7 +79,7 @@
                         this.loading = false
                     })
             },
-            run: function () {
+            run() {
                 this.updateTime()
             }
         }
