@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 const Ip = resolve => require(['@/views/Ip'], resolve)
 const IpHelp = resolve => require(['@/views/IpHelp'], resolve)
+const IpCalculator = resolve => require(['@/views/IpCalculator'], resolve)
+const IpCalculatorHelp = resolve => require(['@/views/IpCalculatorHelp'], resolve)
 const Domain = resolve => require(['@/views/Domain'], resolve)
 const DomainHelp = resolve => require(['@/views/DomainHelp'], resolve)
 const About = resolve => require(['@/views/About'], resolve)
@@ -28,6 +30,14 @@ let routes = [
     {
         path: '/ip/help',
         component: IpHelp
+    },
+    {
+        path: '/ip/calculator',
+        component: IpCalculator
+    },
+    {
+        path: '/ip/calculator/help',
+        component: IpCalculatorHelp
     },
     {
         path: '/domain',
