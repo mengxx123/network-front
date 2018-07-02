@@ -7,8 +7,8 @@
         </div>
         <div class="loading" v-if="loading">加载中...</div>
         <div class="result" v-if="!loading && detail">
-            <div v-if="detail === true">ping 成功</div>
-            <div v-if="detail === false">ping 失败</div>
+            <div v-if="detail[0].alive === true">ping 成功</div>
+            <div v-if="detail[0].alive === false">ping 失败</div>
         </div>
     </my-page>
 </template>
