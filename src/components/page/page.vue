@@ -12,6 +12,9 @@
                 <ui-list-item title="域名查 IP" to="/domain">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
+                <ui-list-item title="在线 ping" to="/ping">
+                    <ui-icon slot="left" value="grade"/>
+                </ui-list-item>
                 <ui-divider />
                 <ui-list-item title="端口扫描" to="/port">
                     <ui-icon slot="left" value="grade"/>

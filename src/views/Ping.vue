@@ -1,13 +1,14 @@
 <template>
-    <my-page title="域名查 IP" :page="page">
+    <my-page title="在线 ping" :page="page">
         <div>
-            <ui-text-field v-model="domain" label="域名" hintText="xxx.com" />
+            <ui-text-field v-model="domain" label="域名或 IP" hintText="" />
             <br>
             <ui-raised-button label="查询" primary @click="query" />
         </div>
         <div class="loading" v-if="loading">加载中...</div>
         <div class="result" v-if="!loading && detail">
-            <div>IP：{{ detail }}</div>
+            <div v-if="detail === true">ping 成功</div>
+            <div v-if="detail === false">ping 失败</div>
         </div>
     </my-page>
 </template>
@@ -43,7 +44,7 @@
             },
             getDetail(domain) {
                 this.loading = true
-                this.$http.get('https://phpapi.yunser.com/host.php?host=' + domain).then(
+                this.$http.get('/ping?host=' + domain).then(
                     response => {
                         let data = response.data
                         console.log(data)
@@ -59,7 +60,7 @@
                 if (!this.domain) {
                     this.$message({
                         type: 'danger',
-                        text: '请输入域名'
+                        text: '请输入域名或 IP'
                     })
                     return
                 }

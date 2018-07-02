@@ -14,6 +14,7 @@ const Port = resolve => require(['@/views/Port'], resolve)
 const PortHelp = resolve => require(['@/views/PortHelp'], resolve)
 const CronVerification = resolve => require(['@/views/CronVerification'], resolve)
 const CronVerificationHelp = resolve => require(['@/views/CronVerificationHelp'], resolve)
+const Ping = resolve => require(['@/views/Ping'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -74,6 +75,10 @@ let routes = [
     {
         path: '/cron/verification/help',
         component: CronVerificationHelp
+    },
+    {
+        path: '/ping',
+        component: Ping
     },
     {
         path: '*',
