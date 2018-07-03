@@ -15,6 +15,7 @@ const PortHelp = resolve => require(['@/views/PortHelp'], resolve)
 const CronVerification = resolve => require(['@/views/CronVerification'], resolve)
 const CronVerificationHelp = resolve => require(['@/views/CronVerificationHelp'], resolve)
 const Ping = resolve => require(['@/views/Ping'], resolve)
+const ShortUrl = resolve => require(['@/views/ShortUrl'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -79,6 +80,10 @@ let routes = [
     {
         path: '/ping',
         component: Ping
+    },
+    {
+        path: '/short_url',
+        component: ShortUrl
     },
     {
         path: '*',

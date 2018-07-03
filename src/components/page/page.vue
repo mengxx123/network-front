@@ -16,6 +16,9 @@
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
                 <ui-divider />
+                <ui-list-item title="短网址" to="/short_url">
+                    <ui-icon slot="left" value="grade"/>
+                </ui-list-item>
                 <ui-list-item title="端口扫描" to="/port">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>

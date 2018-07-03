@@ -1,25 +1,16 @@
 <template>
-    <my-page title="在线 ping" :page="page">
+    <my-page title="新浪短网址" :page="page">
         <div>
-            <ui-text-field v-model="domain" label="域名或 IP" hintText="" />
+            <ui-text-field v-model="domain" label="网址" hintText="" />
             <br>
-            <ui-raised-button label="ping" primary @click="query" />
+        </div>
+        <div class="btns">
+            <ui-raised-button class="btn" label="获取短网址" primary @click="query" />
+            <ui-raised-button class="btn" label="短网址还原" secondary @click="back" />
         </div>
         <div class="loading" v-if="loading">加载中...</div>
         <div class="result" v-if="!loading && detail">
-            <ul class="result-list" v-for="item, index in detail">
-                <li class="item">
-                    <ui-badge class="badge" :content="'' + (index + 1)" />
-                    <span class="time" v-if="item.alive">
-                        {{ item.time }}ms
-                    </span>
-                    <ui-icon class="icon success" value="check_circle" v-if="item.alive" />
-                    <ui-icon class="icon error" value="cancel" v-else />
-                    <!-- <span v-if="item.alive === true">ping 成功</span> -->
-                    <!-- <span v-if="item.alive === false">ping 失败</span> -->
-                </li> 
-            </ul>
-            <div class="tip">服务器节点：广东深圳（阿里云）</div>
+            {{ detail }}
         </div>
     </my-page>
 </template>
@@ -31,7 +22,6 @@
                 loading: false,
                 domain: '',
                 detail: null,
-                // detail: [{"alive":true,"time":297},{"alive":true,"time":56},{"alive":true,"time":65}],
                 page: {
                     menu: [
                         // {
@@ -56,7 +46,29 @@
             },
             getDetail(domain) {
                 this.loading = true
-                this.$http.get('/ping?host=' + domain).then(
+                this.$http.get('/shortUrl?url=' + domain).then(
+                    response => {
+                        let data = response.data
+                        console.log(data)
+                        this.detail = data
+                        this.loading = false
+                    },
+                    response => {
+                        console.log(response)
+                        this.loading = false
+                    })
+            },
+            back() {
+                if (!this.domain) {
+                    this.$message({
+                        type: 'danger',
+                        text: '请输入域名或 IP'
+                    })
+                    return
+                }
+
+                this.loading = true
+                this.$http.get('/longUrl?url=' + this.domain).then(
                     response => {
                         let data = response.data
                         console.log(data)
@@ -99,30 +111,9 @@
     .result {
         margin-top: 16px;
     }
-    .result-list {
-        .item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        .badge {
+    .btns {
+        .btn {
             margin-right: 8px;
         }
-        .time {
-            margin-right: 8px;
-        }
-        .icon {
-            font-size: 16px;
-        }
-        .success {
-            color: #34a853;
-        }
-        .error {
-            color: #ea4335;
-        }
-    }
-    .tip {
-        margin-top: 16px;
-        color: #999;
     }
 </style>
