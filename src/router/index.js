@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+const Home = resolve => require(['@/views/Home'], resolve)
 const Ip = resolve => require(['@/views/Ip'], resolve)
 const IpHelp = resolve => require(['@/views/IpHelp'], resolve)
 const IpCalculator = resolve => require(['@/views/IpCalculator'], resolve)
@@ -16,6 +17,8 @@ const CronVerification = resolve => require(['@/views/CronVerification'], resolv
 const CronVerificationHelp = resolve => require(['@/views/CronVerificationHelp'], resolve)
 const Ping = resolve => require(['@/views/Ping'], resolve)
 const ShortUrl = resolve => require(['@/views/ShortUrl'], resolve)
+const IpToNumber = resolve => require(['@/views/IpToNumber'], resolve)
+const IpToNumberHelp = resolve => require(['@/views/IpToNumberHelp'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -23,7 +26,7 @@ Vue.use(Router)
 let routes = [
     {
         path: '/',
-        redirect: '/ip'
+        component: Home
     },
     {
         path: '/ip',
@@ -84,6 +87,14 @@ let routes = [
     {
         path: '/short_url',
         component: ShortUrl
+    },
+    {
+        path: '/ip_to_number',
+        component: IpToNumber
+    },
+    {
+        path: '/ip_to_number/help',
+        component: IpToNumberHelp
     },
     {
         path: '*',
