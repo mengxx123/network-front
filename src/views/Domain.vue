@@ -7,7 +7,7 @@
         </div>
         <div class="loading" v-if="loading">加载中...</div>
         <div class="result" v-if="!loading && detail">
-            <div>IP：{{ detail }}</div>
+            <result title="IP" :text="detail" :copyable="true" />
         </div>
     </my-page>
 </template>
@@ -24,7 +24,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/domain/help'
+                            href: 'https://project.yunser.com/products/a58eb210e9a811e89ecf3f9940d8d61f',
+                            target: '_blank'
                         }
                     ]
                 }

@@ -44,7 +44,15 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/port/help'
+                            to: '/port/help',
+                            title: '帮助'
+                        },
+                        {
+                            type: 'icon',
+                            icon: 'info',
+                            href: 'https://project.yunser.com/products/e2c23e805c5011e888a50737631f72f2',
+                            target: '_blank',
+                            title: '关于'
                         }
                     ]
                 }

@@ -1,7 +1,7 @@
 <template>
     <my-page title="IP 查询" :page="page">
         <div class="card">
-            你的 IP： <span class="strong">{{ userIp }}</span>
+            <result title="你的 IP" :text="userIp" :copyable="true" />
         </div>
         <div>
             <ui-text-field v-model="ip" label="IP 地址" hintText="输入 IP 地址" />
@@ -29,7 +29,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/ip/help'
+                            href: 'https://project.yunser.com/products/b8a33ab05c5911e888a50737631f72f2',
+                            target: '_blank'
                         }
                     ]
                 }
@@ -90,14 +91,13 @@
         margin-top: 16px;
     }
     .card {
-        width: 320px;
         margin-bottom: 16px;
-        padding: 16px;
-        box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
-        .strong {
-            color: #ff4081;
-            font-size: 24px;
-        }
+        // padding: 16px;
+        // box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
+        // .strong {
+        //     color: #ff4081;
+        //     font-size: 24px;
+        // }
     }
     .result {
         margin-top: 16px;

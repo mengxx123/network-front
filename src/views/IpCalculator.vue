@@ -300,7 +300,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/ip/calculator/help'
+                            href: 'https://project.yunser.com/products/487d9b300d8a11e9b4c16f0404983c51',
+                            target: '_blank'
                         }
                     ]
                 }

@@ -1,5 +1,6 @@
 <template>
-    <my-page title="网络">
+    <my-page title="网络" :page="page">
+        <app-list :data="groups" />
         <div class="tool-list">
             <div class="mu-paper list-item mu-paper-round mu-paper-1" 
                 v-for="app in apps">
@@ -20,62 +21,99 @@
     export default {
         data () {
             return {
-                apps: [
+                groups: [
                     {
-                        name: 'IP 查询',
-                        desc: '',
-                        icon: '/static/img/ip.svg',
-                        to: '/ip'
-                    },
-                    {
-                        name: 'IP 计算器',
-                        desc: '',
-                        icon: '/static/img/ip.svg',
-                        to: '/ip/calculator'
-                    },
-                    {
-                        name: '域名查 IP',
-                        desc: '',
-                        icon: '/static/img/ip.svg',
-                        to: '/domain'
-                    },
-                    {
-                        name: 'IP 转数字',
-                        desc: '',
-                        icon: '/static/img/ip.svg',
-                        to: '/ip_to_number'
-                    },
-                    {
-                        name: '在线 ping',
-                        desc: '',
-                        icon: '/static/img/network_ping.svg',
-                        to: '/ping'
-                    },
-                    {
-                        name: '短网址',
-                        desc: '',
-                        icon: '/static/img/url.svg',
-                        to: '/short_url'
-                    },
-                    {
-                        name: '端口扫描',
-                        desc: '',
-                        icon: '/static/img/port.svg',
-                        to: '/port'
-                    },
-                    {
-                        name: 'User Agent 分析',
-                        desc: '',
-                        icon: '/static/img/user_agent.svg',
-                        to: '/userAgent'
-                    },
-                    {
-                        name: 'Cron 表达式验证',
-                        desc: '',
-                        icon: '/static/img/crontab.svg',
-                        to: '/cron/verification'
+                        // name: '分类',
+                        apps: [
+                            {
+                                name: 'IP 查询',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/ip'
+                            },
+                            {
+                                name: 'IP 计算器',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/ip/calculator'
+                            },
+                            {
+                                name: '域名查 IP',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/domain'
+                            },
+                            {
+                                name: 'IP 转数字',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/ip_to_number'
+                            },
+                            {
+                                name: 'Ping',
+                                desc: '',
+                                icon: '/static/img/network_ping.svg',
+                                to: '/ping'
+                            },
+                            {
+                                name: '短网址',
+                                desc: '',
+                                icon: '/static/img/url.svg',
+                                to: '/short_url'
+                            },
+                            {
+                                name: '端口扫描',
+                                desc: '',
+                                icon: '/static/img/port.svg',
+                                to: '/port'
+                            },
+                            {
+                                name: 'User Agent 分析',
+                                desc: '',
+                                icon: '/static/img/user_agent.svg',
+                                to: '/userAgent'
+                            },
+                            {
+                                name: 'Cron 表达式验证',
+                                desc: '',
+                                icon: '/static/img/crontab.svg',
+                                to: '/cron/verification'
+                            },
+                            // {
+                            //     name: 'WebSocket 测试',
+                            //     desc: '',
+                            //     icon: '/static/img/network.svg',
+                            //     to: '/websocket'
+                            // }
+                            {
+                                name: 'WebSocket 测试',
+                                desc: '',
+                                icon: '/static/img/network.svg',
+                                to: 'xxx',
+                                href: 'http://network-http.yunser.com/websocket',
+                                target: '_blank'
+                            }
+                        ]
                     }
-                ]
+                ],
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'search',
+                            href: 'https://search.yunser.com?utm_source=network',
+                            target: '_blank',
+                            title: '搜索'
+                        },
+                        {
+                            type: 'icon',
+                            icon: 'apps',
+                            href: 'https://app.yunser.com?utm_source=network',
+                            target: '_blank',
+                            title: '应用'
+                        }
+                    ]
+                }
             }
         },
         computed: {

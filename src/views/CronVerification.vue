@@ -39,7 +39,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/cron/verification/help'
+                            href: 'https://project.yunser.com/products/e9b75e600d8911e9b4c16f0404983c51',
+                            target: '_blank'
                         }
                     ]
                 }

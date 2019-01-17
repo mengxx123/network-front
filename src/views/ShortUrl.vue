@@ -5,12 +5,13 @@
             <br>
         </div>
         <div class="btns">
-            <ui-raised-button class="btn" label="获取短网址" primary @click="query" />
-            <ui-raised-button class="btn" label="短网址还原" secondary @click="back" />
+            <ui-raised-button class="btn" label="转换" primary @click="convert" />
+            <!-- <ui-raised-button class="btn" label="获取短网址" primary @click="query" /> -->
+            <!-- <ui-raised-button class="btn" label="短网址还原" secondary @click="back" /> -->
         </div>
         <div class="loading" v-if="loading">加载中...</div>
         <div class="result" v-if="!loading && detail">
-            {{ detail }}
+            <result :text="detail" :copyable="true" />
         </div>
     </my-page>
 </template>
@@ -24,11 +25,12 @@
                 detail: null,
                 page: {
                     menu: [
-                        // {
-                        //     type: 'icon',
-                        //     icon: 'help',
-                        //     to: '/domain/help'
-                        // }
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            href: 'https://project.yunser.com/products/75c38dc05c9611e89cbc311ca74b260f',
+                            target: '_blank'
+                        }
                     ]
                 }
             }
@@ -58,11 +60,25 @@
                         this.loading = false
                     })
             },
+            convert() {
+                if (!this.domain) {
+                    this.$message({
+                        type: 'danger',
+                        text: '请输入网址'
+                    })
+                    return
+                }
+                if (this.domain.indexOf('t.cn') !== -1) {
+                    this.back()
+                } else {
+                    this.query()
+                }
+            },
             back() {
                 if (!this.domain) {
                     this.$message({
                         type: 'danger',
-                        text: '请输入域名或 IP'
+                        text: '请输入短网址'
                     })
                     return
                 }
@@ -84,7 +100,7 @@
                 if (!this.domain) {
                     this.$message({
                         type: 'danger',
-                        text: '请输入域名或 IP'
+                        text: '请输入网址'
                     })
                     return
                 }

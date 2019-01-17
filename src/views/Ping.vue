@@ -1,5 +1,5 @@
 <template>
-    <my-page title="在线 ping" :page="page">
+    <my-page title="Ping" :page="page">
         <div>
             <ui-text-field v-model="domain" label="域名或 IP" hintText="" />
             <br>
@@ -34,11 +34,12 @@
                 // detail: [{"alive":true,"time":297},{"alive":true,"time":56},{"alive":true,"time":65}],
                 page: {
                     menu: [
-                        // {
-                        //     type: 'icon',
-                        //     icon: 'help',
-                        //     to: '/domain/help'
-                        // }
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            href: 'https://project.yunser.com/products/7487d6c00d8d11e9b4c16f0404983c51',
+                            target: '_blank'
+                        }
                     ]
                 }
             }
