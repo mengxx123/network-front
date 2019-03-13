@@ -1,8 +1,12 @@
 <template>
-    <my-page title="新浪短网址" :page="page">
+    <my-page title="短网址" :page="page">
         <div>
             <ui-text-field v-model="domain" label="网址" hintText="" />
             <br>
+            <div class="radio-list">
+                <ui-radio class="radio" v-model="type" label="新浪短网址" name="group" nativeValue="sina" />
+                <ui-radio class="radio" v-model="type" label="MRW短网址" name="group" nativeValue="mrw" />
+            </div>
         </div>
         <div class="btns">
             <ui-raised-button class="btn" label="转换" primary @click="convert" />
@@ -20,6 +24,7 @@
     export default {
         data () {
             return {
+                type: 'sina',
                 loading: false,
                 domain: '',
                 detail: null,
@@ -48,7 +53,8 @@
             },
             getDetail(domain) {
                 this.loading = true
-                this.$http.get('/shortUrl?url=' + domain).then(
+                let url = this.type === 'sina' ? ('/shortUrl?url=' + encodeURIComponent(domain)) : ('https://mrw.so/api.php?url=' + encodeURIComponent(domain))
+                this.$http.get(url).then(
                     response => {
                         let data = response.data
                         console.log(data)
@@ -68,7 +74,7 @@
                     })
                     return
                 }
-                if (this.domain.indexOf('t.cn') !== -1) {
+                if (this.domain.indexOf('t.cn') !== -1 || this.domain.indexOf('mrw.so') !== -1) {
                     this.back()
                 } else {
                     this.query()
@@ -84,6 +90,7 @@
                 }
 
                 this.loading = true
+                // let url = this.type === 'sina' ? '' : ''
                 this.$http.get('/longUrl?url=' + this.domain).then(
                     response => {
                         let data = response.data
@@ -111,6 +118,12 @@
 </script>
 
 <style lang="scss" scoped>
+    .radio-list {
+        margin-bottom: 16px;
+        .radio {
+            margin-right: 16px;
+        }
+    }
     .loading {
         margin-top: 16px;
     }
