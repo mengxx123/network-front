@@ -1,22 +1,24 @@
 <template>
     <my-page title="端口扫描 - 帮助" backable>
-        <ui-article class="article">
-            <h3>常见端口号表</h3>
-            <table>
-                <tr>
-                    <th>端口</th>
-                    <th>服务：描述</th>
-                </tr>
-                <tr v-for="port in ports">
-                    <td>{{ port.port }}</td>
-                    <td>
-                        <ul v-for="service in port.services">
-                            <li>{{ service.name }}：{{ service.desc }}</li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
-        </ui-article>
+        <div class="common-container container">
+            <ui-article class="article">
+                <h3>常见端口号表</h3>
+                <table>
+                    <tr>
+                        <th>端口</th>
+                        <th>服务：描述</th>
+                    </tr>
+                    <tr v-for="port in ports">
+                        <td>{{ port.port }}</td>
+                        <td>
+                            <ul v-for="service in port.services">
+                                <li>{{ service.name }}：{{ service.desc }}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </ui-article>
+        </div>
     </my-page>
 </template>
 

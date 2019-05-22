@@ -1,13 +1,15 @@
 <template>
     <my-page title="域名查 IP" :page="page">
-        <div>
-            <ui-text-field v-model="domain" label="域名" hintText="xxx.com" />
-            <br>
-            <ui-raised-button label="查询" primary @click="query" />
-        </div>
-        <div class="loading" v-if="loading">加载中...</div>
-        <div class="result" v-if="!loading && detail">
-            <result title="IP" :text="detail" :copyable="true" />
+        <div class="common-container container">
+            <div>
+                <ui-text-field v-model="domain" label="域名" hintText="xxx.com" />
+                <br>
+                <ui-raised-button label="查询" primary @click="query" />
+            </div>
+            <div class="loading" v-if="loading">加载中...</div>
+            <div class="result" v-if="!loading && detail">
+                <result title="IP" :text="detail" :copyable="true" />
+            </div>
         </div>
     </my-page>
 </template>

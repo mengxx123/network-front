@@ -1,17 +1,19 @@
 <template>
     <my-page title="IP 查询" :page="page">
-        <div class="card">
-            <result title="你的 IP" :text="userIp" :copyable="true" />
-        </div>
-        <div>
-            <ui-text-field v-model="ip" label="IP 地址" hintText="输入 IP 地址" />
-            <br>
-            <ui-raised-button label="查询" primary @click="query" />
-        </div>
-        <div class="loading" v-if="loading">加载中...</div>
-        <div class="result" v-if="!loading && detail">
-            <div>所在地区：{{ detail.country }} {{ detail.region }} {{ detail.city }}</div>
-            <div>{{ detail.isp }}</div>
+        <div class="common-container container">
+            <div class="card">
+                <result title="你的 IP" :text="userIp" :copyable="true" />
+            </div>
+            <div>
+                <ui-text-field v-model="ip" label="IP 地址" hintText="输入 IP 地址" />
+                <br>
+                <ui-raised-button label="查询" primary @click="query" />
+            </div>
+            <div class="loading" v-if="loading">加载中...</div>
+            <div class="result" v-if="!loading && detail">
+                <div>所在地区：{{ detail.country }} {{ detail.region }} {{ detail.city }}</div>
+                <div>{{ detail.isp }}</div>
+            </div>
         </div>
     </my-page>
 </template>

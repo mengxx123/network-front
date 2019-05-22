@@ -1,288 +1,290 @@
 <template>
     <my-page title="IP 计算器" :page="page">
-        <form id="form" name="calculator" method="post">
-            <ui-article>
-                <table class="table table-bordered">
-                    <caption>子网掩码计算器</caption>
-                    <tr bgcolor="#ffffff">
-                        <td width="250" align="right">输入 TCP/IP 地址:</td>
-                        <td width="360" align="right">
-                            <input type="text" name="oct1" size="3"  maxlength="3"  onkeyup="Jump();">
-                            <input type="text" name="oct2" size="3"  maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct3" size="3"  maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct4" size="3"  maxlength="3">
-                        </td>
-                        <td width="100" align="left">
-                            <input id="ClearAll" class="btn btn-default" type="button" value=" 清除 ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">选择网络类型:</td>
-                        <td align="right">
-                            <input type="radio" value="1" name="cf" checked="">默认
-                            <input type="radio" value="2" name="cf">A类网
-                            <input type="radio" value="3" name="cf">B类网
-                            <input type="radio" value="4" name="cf">C类网
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td align="right">请选择子网的ip数量:</td>
-                        <td align="right">
-                            <select id="EmptyHosts" name="network" size="1">
-                                <option value="0"></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="4">4</option>
-                                <option value="8">8</option>
-                                <option value="16">16</option>
-                                <option value="32">32</option>
-                                <option value="64">64</option>
-                                <option value="128">128</option>
-                                <option value="256">256</option>
-                                <option value="512">512</option>
-                                <option value="1024">1024</option>
-                                <option value="2048">2048</option>
-                                <option value="4096">4096</option>
-                                <option value="8192">8192</option>
-                                <option value="16384">16384</option>
-                                <option value="32768">32768</option>
-                                <option value="65536">65536</option>
-                                <option value="131072">131072</option>
-                                <option value="262144">262144</option>
-                                <option value="524288">524288</option>
-                                <option value="1048576">1048576</option>
-                                <option value="2097152">2097152</option>
-                                <option value="4194304">4194304</option>
-                                <option value="8388608">8388608</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td align="right">或 选择每个网络所需的<br>节点/主机数(含广播地址):</td>
-                        <td align="right">
-                            <select id="EmptyNetwork" name="node" size="1">
-                                <option value="0"></option>
-                                <option value="2">2</option>
-                                <option value="4">4</option>
-                                <option value="8">8</option>
-                                <option value="16">16</option>
-                                <option value="32">32</option>
-                                <option value="64">64</option>
-                                <option value="128">128</option>
-                                <option value="256">256</option>
-                                <option value="512">512</option>
-                                <option value="1024">1024</option>
-                                <option value="2048">2048</option>
-                                <option value="4096">4096</option>
-                                <option value="8192">8192</option>
-                                <option value="16384">16384</option>
-                                <option value="32768">32768</option>
-                                <option value="65536">65536</option>
-                                <option value="131072">131072</option>
-                                <option value="262144">262144</option>
-                                <option value="524288">524288</option>
-                                <option value="1048576">1048576</option>
-                                <option value="2097152">2097152</option>
-                                <option value="4194304">4194304</option>
-                                <option value="8388608">8388608</option>
-                                <option value="16777216">16777216</option>
-                                <option value="33554432">33554432</option>
-                                <option value="67108864">67108864</option>
-                                <option value="134217728">134217728</option>
-                                <option value="268435456">268435456</option>
-                                <option value="536870912">536870912</option>
-                                <option value="1073741824">1073741824</option>
-                                <option value="2147483648">2147483648</option>
-                            </select>
-                        </td>
-                        <td align="left">
-                            <input id="compute2" class="btn btn-default" type="button" value=" 计算 ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">网络类型:</td>
-                        <td align="right">
-                            <input type="text" name="nwclass" size="7" maxlength="7">
-                            <input type="text" name="subsuper" size="14" maxlength="14">
-                            <input type="text" name="nwclass1" size="7" maxlength="7"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td align="right">子网掩码:</td>
-                        <td align="right"><input type="text" name="snm1" size="3" maxlength="3">
-                            <input type="text" name="snm2" size="3" maxlength="3">
-                            <input type="text" name="snm3" size="3" maxlength="3">
-                            <input type="text" name="snm4" size="3" maxlength="3"> 或
-                            <input type="text" name="snmbits" size="3" maxlength="3">
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td align="right">子网:</td>
-                        <td align="right"><input type="text" name="nwquant" size="10" maxlength="8"></td>
-                        <td align="left">
-                            <input id="listsubnets" class="btn btn-default" type="button" value="网络列表">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">每个网络的节点/主机数<br><font size="-2">(含网络和广播地址)***</font>:</td>
-                        <td align="right"><input type="text" name="nodequant" size="10" maxlength="8"></td>
-                        <td align="left"></td>
-                    </tr>
-                </table>
-                <table class="table table-bordered">
-                    <caption>网络/节点计算器</caption>
-                    <tr>
-                        <td width="250" align="right">请输入子网掩码:</td>
-                        <td width="360" align="right">
-                            <input type="text" name="snm1a" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm2a" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm3a" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm4a" size="3" maxlength="3" onkeyup="Jump();">
-                        </td>
-                        <td width="100"></td>
-                    </tr>
-                    <tr>
-                        <td align="right">请输入 TCP/IP 地址:</td>
-                        <td align="right">
-                            <input type="text" name="oct1a" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct2a" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct3a" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct4a" size="3" maxlength="3" onkeyup="Jump();">
-                        </td>
-                        <td align="left">
-                            <input id="compute" class="btn btn-default" type="button" value=" 计算 ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"><hr></td>
-                    </tr>
-                    <tr>
-                        <td align="right">网络:</td>
-                        <td align="right">
-                            <input type="text" name="nw1a" size="3" maxlength="3">
-                            <input type="text" name="nw2a" size="3" maxlength="3">
-                            <input type="text" name="nw3a" size="3" maxlength="3">
-                            <input type="text" name="nw4a" size="3" maxlength="3">
-                        </td>
-                        <td></td>
-                    </tr>
+        <div class="common-container container">
+            <form id="form" name="calculator" method="post">
+                <ui-article>
+                    <table class="table table-bordered">
+                        <caption>子网掩码计算器</caption>
+                        <tr bgcolor="#ffffff">
+                            <td width="250" align="right">输入 TCP/IP 地址:</td>
+                            <td width="360" align="right">
+                                <input type="text" name="oct1" size="3"  maxlength="3"  onkeyup="Jump();">
+                                <input type="text" name="oct2" size="3"  maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct3" size="3"  maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct4" size="3"  maxlength="3">
+                            </td>
+                            <td width="100" align="left">
+                                <input id="ClearAll" class="btn btn-default" type="button" value=" 清除 ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">选择网络类型:</td>
+                            <td align="right">
+                                <input type="radio" value="1" name="cf" checked="">默认
+                                <input type="radio" value="2" name="cf">A类网
+                                <input type="radio" value="3" name="cf">B类网
+                                <input type="radio" value="4" name="cf">C类网
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right">请选择子网的ip数量:</td>
+                            <td align="right">
+                                <select id="EmptyHosts" name="network" size="1">
+                                    <option value="0"></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
+                                    <option value="8">8</option>
+                                    <option value="16">16</option>
+                                    <option value="32">32</option>
+                                    <option value="64">64</option>
+                                    <option value="128">128</option>
+                                    <option value="256">256</option>
+                                    <option value="512">512</option>
+                                    <option value="1024">1024</option>
+                                    <option value="2048">2048</option>
+                                    <option value="4096">4096</option>
+                                    <option value="8192">8192</option>
+                                    <option value="16384">16384</option>
+                                    <option value="32768">32768</option>
+                                    <option value="65536">65536</option>
+                                    <option value="131072">131072</option>
+                                    <option value="262144">262144</option>
+                                    <option value="524288">524288</option>
+                                    <option value="1048576">1048576</option>
+                                    <option value="2097152">2097152</option>
+                                    <option value="4194304">4194304</option>
+                                    <option value="8388608">8388608</option>
+                                </select>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right">或 选择每个网络所需的<br>节点/主机数(含广播地址):</td>
+                            <td align="right">
+                                <select id="EmptyNetwork" name="node" size="1">
+                                    <option value="0"></option>
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
+                                    <option value="8">8</option>
+                                    <option value="16">16</option>
+                                    <option value="32">32</option>
+                                    <option value="64">64</option>
+                                    <option value="128">128</option>
+                                    <option value="256">256</option>
+                                    <option value="512">512</option>
+                                    <option value="1024">1024</option>
+                                    <option value="2048">2048</option>
+                                    <option value="4096">4096</option>
+                                    <option value="8192">8192</option>
+                                    <option value="16384">16384</option>
+                                    <option value="32768">32768</option>
+                                    <option value="65536">65536</option>
+                                    <option value="131072">131072</option>
+                                    <option value="262144">262144</option>
+                                    <option value="524288">524288</option>
+                                    <option value="1048576">1048576</option>
+                                    <option value="2097152">2097152</option>
+                                    <option value="4194304">4194304</option>
+                                    <option value="8388608">8388608</option>
+                                    <option value="16777216">16777216</option>
+                                    <option value="33554432">33554432</option>
+                                    <option value="67108864">67108864</option>
+                                    <option value="134217728">134217728</option>
+                                    <option value="268435456">268435456</option>
+                                    <option value="536870912">536870912</option>
+                                    <option value="1073741824">1073741824</option>
+                                    <option value="2147483648">2147483648</option>
+                                </select>
+                            </td>
+                            <td align="left">
+                                <input id="compute2" class="btn btn-default" type="button" value=" 计算 ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">网络类型:</td>
+                            <td align="right">
+                                <input type="text" name="nwclass" size="7" maxlength="7">
+                                <input type="text" name="subsuper" size="14" maxlength="14">
+                                <input type="text" name="nwclass1" size="7" maxlength="7"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right">子网掩码:</td>
+                            <td align="right"><input type="text" name="snm1" size="3" maxlength="3">
+                                <input type="text" name="snm2" size="3" maxlength="3">
+                                <input type="text" name="snm3" size="3" maxlength="3">
+                                <input type="text" name="snm4" size="3" maxlength="3"> 或
+                                <input type="text" name="snmbits" size="3" maxlength="3">
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right">子网:</td>
+                            <td align="right"><input type="text" name="nwquant" size="10" maxlength="8"></td>
+                            <td align="left">
+                                <input id="listsubnets" class="btn btn-default" type="button" value="网络列表">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">每个网络的节点/主机数<br><font size="-2">(含网络和广播地址)***</font>:</td>
+                            <td align="right"><input type="text" name="nodequant" size="10" maxlength="8"></td>
+                            <td align="left"></td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered">
+                        <caption>网络/节点计算器</caption>
+                        <tr>
+                            <td width="250" align="right">请输入子网掩码:</td>
+                            <td width="360" align="right">
+                                <input type="text" name="snm1a" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm2a" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm3a" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm4a" size="3" maxlength="3" onkeyup="Jump();">
+                            </td>
+                            <td width="100"></td>
+                        </tr>
+                        <tr>
+                            <td align="right">请输入 TCP/IP 地址:</td>
+                            <td align="right">
+                                <input type="text" name="oct1a" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct2a" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct3a" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct4a" size="3" maxlength="3" onkeyup="Jump();">
+                            </td>
+                            <td align="left">
+                                <input id="compute" class="btn btn-default" type="button" value=" 计算 ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><hr></td>
+                        </tr>
+                        <tr>
+                            <td align="right">网络:</td>
+                            <td align="right">
+                                <input type="text" name="nw1a" size="3" maxlength="3">
+                                <input type="text" name="nw2a" size="3" maxlength="3">
+                                <input type="text" name="nw3a" size="3" maxlength="3">
+                                <input type="text" name="nw4a" size="3" maxlength="3">
+                            </td>
+                            <td></td>
+                        </tr>
 
-                    <tr>
-                        <td align="right">节点/主机:</td>
-                        <td align="right">
-                            <input type="text" name="node1a" size="3" maxlength="3">
-                            <input type="text" name="node2a" size="3" maxlength="3">
-                            <input type="text" name="node3a" size="3" maxlength="3">
-                            <input type="text" name="node4a" size="3" maxlength="3">
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td align="right">广播地址:</td>
-                        <td align="right">
-                            <input type="text" name="broad1a" size="3" maxlength="3">
-                            <input type="text" name="broad2a" size="3" maxlength="3">
-                            <input type="text" name="broad3a" size="3" maxlength="3">
-                            <input type="text" name="broad4a" size="3" maxlength="3">
-                        </td>
-                        <td align="left"></td>
-                    </tr>
-                </table>
-                <table class="table table-bordered">
-                    <caption>IP 地址转换器</caption>
-                    <tr>
-                        <td width="250" align="right">请输入点格式十进制 TCP/IP 地址:</td>
-                        <td width="360" align="right">
-                            <input type="text" name="oct1b" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct2b" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct3b" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="oct4b" size="3" maxlength="3" onkeyup="Jump();">
-                        </td>
-                        <td width="100" align="left">
-                            <input id="compute3" class="btn btn-default" type="button" value=" 计算 ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">或 输入二进制 TCP/IP 地址:</td>
-                        <td align="right">
-                            <input type="text" name="bin1b" size="8" maxlength="8" onkeyup="Jump();">
-                            <input type="text" name="bin2b" size="8" maxlength="8" onkeyup="Jump();">
-                            <input type="text" name="bin3b" size="8" maxlength="8" onkeyup="Jump();">
-                            <input type="text" name="bin4b" size="8" maxlength="8" onkeyup="Jump();">
-                        </td>
-                        <td align="left">
-                            <input class="btn btn-default" id="compute4" type="button" value=" 计算 " >
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">或 输入十六进制 TCP/IP 地址:</td>
-                        <td align="right">
-                            <input type="text" name="hex1b" size="2" maxlength="2" onkeyup="Jump();">
-                            <input type="text" name="hex2b" size="2" maxlength="2" onkeyup="Jump();">
-                            <input type="text" name="hex3b" size="2" maxlength="2" onkeyup="Jump();">
-                            <input type="text" name="hex4b" size="2" maxlength="2" onkeyup="Jump();">
-                        </td>
-                        <td align="left">
-                            <input class="btn btn-default" id="compute5" type="button" value=" 计算 ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">或 输入十进制 TCP/IP 地址:</td>
-                        <td align="right"><input type="text" name="dec1b" size="10" maxlength="10"></td>
-                        <td align="left"><input class="btn btn-default" id="compute6" type="button" value=" 计算 "></td>
-                    </tr>
-                </table>
-                <table class="table table-bordered">
-                    <caption>子网掩码换算器</caption>
-                    <tr>
-                        <td class="td-left">请输入点格式十进制子网掩码:</td>
-                        <td class="td-center">
-                            <input type="text" name="snm1c" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm2c" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm3c" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm4c" size="3" maxlength="3" onkeyup="Jump();">
-                        </td>
-                        <td class="td-right">
-                            <input class="btn btn-default" id="computeSNMA" type="button" value=" 计算 ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-left">或 输入子网掩码的位元数:</td>
-                        <td class="td-center">/ <input type="text" name="snmbitsc" size="2" maxlength="2"></td>
-                        <td class="td-right"><input class="btn btn-default" id="computeSNMB" type="button" value=" 计算 "></td>
-                    </tr>
-                </table>
-                <table class="table table-bordered">
-                    <caption>子网掩码逆算器</caption>
-                    <tr>
-                        <td width="250" align="right">请输入点格式十进制子网掩码:</td>
-                        <td width="360" align="right">
-                            <input type="text" name="snm1d" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm2d" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm3d" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm4d" size="3" maxlength="3" onkeyup="Jump();">
-                        </td>
-                        <td width="100" align="left">
-                            <input class="btn btn-default" id="computeINV1" type="button" value=" 计算 ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">输入要逆算的子网掩码:</td>
-                        <td align="right">
-                            <input type="text" name="snm1e" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm2e" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm3e" size="3" maxlength="3" onkeyup="Jump();">
-                            <input type="text" name="snm4e" size="3" maxlength="3" onkeyup="Jump();">
-                        </td>
-                        <td align="right">&nbsp;</td>
-                    </tr>
-                </table>
-            </ui-article>
-            
-        </form>
+                        <tr>
+                            <td align="right">节点/主机:</td>
+                            <td align="right">
+                                <input type="text" name="node1a" size="3" maxlength="3">
+                                <input type="text" name="node2a" size="3" maxlength="3">
+                                <input type="text" name="node3a" size="3" maxlength="3">
+                                <input type="text" name="node4a" size="3" maxlength="3">
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="right">广播地址:</td>
+                            <td align="right">
+                                <input type="text" name="broad1a" size="3" maxlength="3">
+                                <input type="text" name="broad2a" size="3" maxlength="3">
+                                <input type="text" name="broad3a" size="3" maxlength="3">
+                                <input type="text" name="broad4a" size="3" maxlength="3">
+                            </td>
+                            <td align="left"></td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered">
+                        <caption>IP 地址转换器</caption>
+                        <tr>
+                            <td width="250" align="right">请输入点格式十进制 TCP/IP 地址:</td>
+                            <td width="360" align="right">
+                                <input type="text" name="oct1b" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct2b" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct3b" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="oct4b" size="3" maxlength="3" onkeyup="Jump();">
+                            </td>
+                            <td width="100" align="left">
+                                <input id="compute3" class="btn btn-default" type="button" value=" 计算 ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">或 输入二进制 TCP/IP 地址:</td>
+                            <td align="right">
+                                <input type="text" name="bin1b" size="8" maxlength="8" onkeyup="Jump();">
+                                <input type="text" name="bin2b" size="8" maxlength="8" onkeyup="Jump();">
+                                <input type="text" name="bin3b" size="8" maxlength="8" onkeyup="Jump();">
+                                <input type="text" name="bin4b" size="8" maxlength="8" onkeyup="Jump();">
+                            </td>
+                            <td align="left">
+                                <input class="btn btn-default" id="compute4" type="button" value=" 计算 " >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">或 输入十六进制 TCP/IP 地址:</td>
+                            <td align="right">
+                                <input type="text" name="hex1b" size="2" maxlength="2" onkeyup="Jump();">
+                                <input type="text" name="hex2b" size="2" maxlength="2" onkeyup="Jump();">
+                                <input type="text" name="hex3b" size="2" maxlength="2" onkeyup="Jump();">
+                                <input type="text" name="hex4b" size="2" maxlength="2" onkeyup="Jump();">
+                            </td>
+                            <td align="left">
+                                <input class="btn btn-default" id="compute5" type="button" value=" 计算 ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">或 输入十进制 TCP/IP 地址:</td>
+                            <td align="right"><input type="text" name="dec1b" size="10" maxlength="10"></td>
+                            <td align="left"><input class="btn btn-default" id="compute6" type="button" value=" 计算 "></td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered">
+                        <caption>子网掩码换算器</caption>
+                        <tr>
+                            <td class="td-left">请输入点格式十进制子网掩码:</td>
+                            <td class="td-center">
+                                <input type="text" name="snm1c" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm2c" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm3c" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm4c" size="3" maxlength="3" onkeyup="Jump();">
+                            </td>
+                            <td class="td-right">
+                                <input class="btn btn-default" id="computeSNMA" type="button" value=" 计算 ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-left">或 输入子网掩码的位元数:</td>
+                            <td class="td-center">/ <input type="text" name="snmbitsc" size="2" maxlength="2"></td>
+                            <td class="td-right"><input class="btn btn-default" id="computeSNMB" type="button" value=" 计算 "></td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered">
+                        <caption>子网掩码逆算器</caption>
+                        <tr>
+                            <td width="250" align="right">请输入点格式十进制子网掩码:</td>
+                            <td width="360" align="right">
+                                <input type="text" name="snm1d" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm2d" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm3d" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm4d" size="3" maxlength="3" onkeyup="Jump();">
+                            </td>
+                            <td width="100" align="left">
+                                <input class="btn btn-default" id="computeINV1" type="button" value=" 计算 ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">输入要逆算的子网掩码:</td>
+                            <td align="right">
+                                <input type="text" name="snm1e" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm2e" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm3e" size="3" maxlength="3" onkeyup="Jump();">
+                                <input type="text" name="snm4e" size="3" maxlength="3" onkeyup="Jump();">
+                            </td>
+                            <td align="right">&nbsp;</td>
+                        </tr>
+                    </table>
+                </ui-article>
+                
+            </form>
+        </div>
     </my-page>
 </template>
 

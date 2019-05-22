@@ -1,21 +1,23 @@
 <template>
     <my-page title="短网址" :page="page">
-        <div>
-            <ui-text-field v-model="domain" label="网址" hintText="" />
-            <br>
-            <div class="radio-list">
-                <ui-radio class="radio" v-model="type" label="新浪短网址" name="group" nativeValue="sina" />
-                <ui-radio class="radio" v-model="type" label="MRW短网址" name="group" nativeValue="mrw" />
+        <div class="common-container container">
+            <div>
+                <ui-text-field v-model="domain" label="网址" hintText="" />
+                <br>
+                <div class="radio-list">
+                    <ui-radio class="radio" v-model="type" label="新浪短网址" name="group" nativeValue="sina" />
+                    <ui-radio class="radio" v-model="type" label="MRW短网址" name="group" nativeValue="mrw" />
+                </div>
             </div>
-        </div>
-        <div class="btns">
-            <ui-raised-button class="btn" label="转换" primary @click="convert" />
-            <!-- <ui-raised-button class="btn" label="获取短网址" primary @click="query" /> -->
-            <!-- <ui-raised-button class="btn" label="短网址还原" secondary @click="back" /> -->
-        </div>
-        <div class="loading" v-if="loading">加载中...</div>
-        <div class="result" v-if="!loading && detail">
-            <result :text="detail" :copyable="true" />
+            <div class="btns">
+                <ui-raised-button class="btn" label="转换" primary @click="convert" />
+                <!-- <ui-raised-button class="btn" label="获取短网址" primary @click="query" /> -->
+                <!-- <ui-raised-button class="btn" label="短网址还原" secondary @click="back" /> -->
+            </div>
+            <div class="loading" v-if="loading">加载中...</div>
+            <div class="result" v-if="!loading && detail">
+                <result :text="detail" :copyable="true" />
+            </div>
         </div>
     </my-page>
 </template>

@@ -1,25 +1,27 @@
 <template>
     <my-page title="Ping" :page="page">
-        <div>
-            <ui-text-field v-model="domain" label="域名或 IP" hintText="" />
-            <br>
-            <ui-raised-button label="ping" primary @click="query" />
-        </div>
-        <div class="loading" v-if="loading">加载中...</div>
-        <div class="result" v-if="!loading && detail">
-            <ul class="result-list" v-for="item, index in detail">
-                <li class="item">
-                    <ui-badge class="badge" :content="'' + (index + 1)" />
-                    <span class="time" v-if="item.alive">
-                        {{ item.time }}ms
-                    </span>
-                    <ui-icon class="icon success" value="check_circle" v-if="item.alive" />
-                    <ui-icon class="icon error" value="cancel" v-else />
-                    <!-- <span v-if="item.alive === true">ping 成功</span> -->
-                    <!-- <span v-if="item.alive === false">ping 失败</span> -->
-                </li> 
-            </ul>
-            <div class="tip">服务器节点：广东深圳（阿里云）</div>
+        <div class="common-container container">
+            <div>
+                <ui-text-field v-model="domain" label="域名或 IP" hintText="" />
+                <br>
+                <ui-raised-button label="ping" primary @click="query" />
+            </div>
+            <div class="loading" v-if="loading">加载中...</div>
+            <div class="result" v-if="!loading && detail">
+                <ul class="result-list" v-for="item, index in detail">
+                    <li class="item">
+                        <ui-badge class="badge" :content="'' + (index + 1)" />
+                        <span class="time" v-if="item.alive">
+                            {{ item.time }}ms
+                        </span>
+                        <ui-icon class="icon success" value="check_circle" v-if="item.alive" />
+                        <ui-icon class="icon error" value="cancel" v-else />
+                        <!-- <span v-if="item.alive === true">ping 成功</span> -->
+                        <!-- <span v-if="item.alive === false">ping 失败</span> -->
+                    </li> 
+                </ul>
+                <div class="tip">服务器节点：广东深圳（阿里云）</div>
+            </div>
         </div>
     </my-page>
 </template>

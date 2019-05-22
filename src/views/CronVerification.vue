@@ -1,27 +1,30 @@
 <template>
     <my-page title="Cron 表达式验证" :page="page">
-        <div class="form-group">
-            <ui-text-field  v-model="cron" label="Crontab 表达式" hintText="如：0 */12 * * *" />
-        </div>
-        <!--<div class="form-group">-->
-            <!--开始时间-->
-        <!--</div>-->
-        <div class="form-group">
-            <ui-text-field class="input-number"  v-model.number="number" label="执行次数" hintText="如：0 */12 * * *" />
-            <span class="unit">次</span>
-            <!--执行次数：<input type="number" v-model.number="number" readonly> 次-->
-        </div>
-        <div class="form-group">
-            <ui-raised-button class="btn" label="执行" primary @click="run" />
-        </div>
-        <div class="loading" v-if="loading">加载中...</div>
-        <div v-if="times.length">
-            <div>执行结果：</div>
-            <div>
-                <ol class="time-list">
-                    <li v-for="time in times">{{ time }}</li>
-                </ol>
+        <div class="common-container container">
+            <div class="form-group">
+                <ui-text-field  v-model="cron" label="Crontab 表达式" hintText="如：0 */12 * * *" />
             </div>
+            <!--<div class="form-group">-->
+                <!--开始时间-->
+            <!--</div>-->
+            <div class="form-group">
+                <ui-text-field class="input-number"  v-model.number="number" label="执行次数" hintText="如：0 */12 * * *" />
+                <span class="unit">次</span>
+                <!--执行次数：<input type="number" v-model.number="number" readonly> 次-->
+            </div>
+            <div class="form-group">
+                <ui-raised-button class="btn" label="执行" primary @click="run" />
+            </div>
+            <div class="loading" v-if="loading">加载中...</div>
+            <div v-if="times.length">
+                <div>执行结果：</div>
+                <div>
+                    <ol class="time-list">
+                        <li v-for="time in times">{{ time }}</li>
+                    </ol>
+                </div>
+            </div>
+
         </div>
     </my-page>
 </template>

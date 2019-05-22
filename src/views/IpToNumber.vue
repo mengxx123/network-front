@@ -1,14 +1,16 @@
 <template>
     <my-page title="IP 转数字" :page="page">
-        <div>
-            <ui-text-field v-model="ip" label="IP" hintText="" />
-            <br>
-            <ui-raised-button label="转换" primary @click="convert" />
-        </div>
-        <div class="loading" v-if="loading">加载中...</div>
-        <div class="result" v-if="!loading && detail">
-            <result :text="detail" :copyable="true" />
-            <!-- <div>{{ detail }}</div> -->
+        <div class="common-container container">
+            <div>
+                <ui-text-field v-model="ip" label="IP" hintText="" />
+                <br>
+                <ui-raised-button label="转换" primary @click="convert" />
+            </div>
+            <div class="loading" v-if="loading">加载中...</div>
+            <div class="result" v-if="!loading && detail">
+                <result :text="detail" :copyable="true" />
+                <!-- <div>{{ detail }}</div> -->
+            </div>
         </div>
     </my-page>
 </template>

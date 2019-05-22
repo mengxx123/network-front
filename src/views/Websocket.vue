@@ -1,6 +1,6 @@
 <template>
     <my-page title="WebSocket 测试" :page="page">
-        <div class="container">
+        <div class="common-container container">
             <ui-text-field class="url" v-model="url" label="WebSocket 地址" hintText="" />
             <div class="btns">
                 <ui-raised-button class="btn" label="连接" primary @click="open" />

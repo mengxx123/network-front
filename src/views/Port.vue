@@ -1,33 +1,35 @@
 <template>
     <my-page title="端口扫描" :page="page">
-        <div>
-            <ui-text-field v-model="domain" label="扫描网站的域名或 IP："/>
+        <div class="common-container container">
+            <div>
+                <ui-text-field v-model="domain" label="扫描网站的域名或 IP："/>
+            </div>
+            <div>
+                <ui-text-field v-model="port" label="扫描端口（以英文逗号,分割）：" multiLine :rows="4" labelFloat/>
+            </div>
+            <div>
+                <ui-raised-button label="开始扫描" primary @click="scan" />
+            </div>
+            <div class="loading" v-if="loading">加载中...</div>
+            <ui-article v-if="!loading && result">
+                <h2>扫描结果</h2>
+                <p v-if="result.data.length">扫描 {{ domain }} 端口共 {{ result.number }} 个, 耗时 {{ result.time }} 毫秒!</p>
+                <table>
+                    <tr>
+                        <th>端口</th>
+                        <th>服务</th>
+                        <th>响应</th>
+                        <th>状态</th>
+                    </tr>
+                    <tr v-for="port in result.data">
+                        <td>{{ port.port }}</td>
+                        <td>{{ port.service }}</td>
+                        <td>{{ port.time ? port.time + 'ms' : '' }}</td>
+                        <td>{{ port.opened ? '开放' : '关闭' }}</td>
+                    </tr>
+                </table>
+            </ui-article>
         </div>
-        <div>
-            <ui-text-field v-model="port" label="扫描端口（以英文逗号,分割）：" multiLine :rows="4" labelFloat/>
-        </div>
-        <div>
-            <ui-raised-button label="开始扫描" primary @click="scan" />
-        </div>
-        <div class="loading" v-if="loading">加载中...</div>
-        <ui-article v-if="!loading && result">
-            <h2>扫描结果</h2>
-            <p v-if="result.data.length">扫描 {{ domain }} 端口共 {{ result.number }} 个, 耗时 {{ result.time }} 毫秒!</p>
-            <table>
-                <tr>
-                    <th>端口</th>
-                    <th>服务</th>
-                    <th>响应</th>
-                    <th>状态</th>
-                </tr>
-                <tr v-for="port in result.data">
-                    <td>{{ port.port }}</td>
-                    <td>{{ port.service }}</td>
-                    <td>{{ port.time ? port.time + 'ms' : '' }}</td>
-                    <td>{{ port.opened ? '开放' : '关闭' }}</td>
-                </tr>
-            </table>
-        </ui-article>
     </my-page>
 </template>
 
