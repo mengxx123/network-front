@@ -6,6 +6,7 @@ const Ip = resolve => require(['@/views/Ip'], resolve)
 const IpCalculator = resolve => require(['@/views/IpCalculator'], resolve)
 const Domain = resolve => require(['@/views/Domain'], resolve)
 const UserAgent = resolve => require(['@/views/UserAgent'], resolve)
+const UserAgentMake = resolve => require(['@/views/UserAgentMake'], resolve)
 const UserAgentHelp = resolve => require(['@/views/UserAgentHelp'], resolve)
 const Port = resolve => require(['@/views/Port'], resolve)
 const PortHelp = resolve => require(['@/views/PortHelp'], resolve)
@@ -46,6 +47,10 @@ let routes = [
     {
         path: '/userAgent',
         component: UserAgent
+    },
+    {
+        path: '/userAgent/make',
+        component: UserAgentMake
     },
     {
         path: '/userAgent/help',

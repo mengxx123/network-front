@@ -9,6 +9,8 @@
                 </div>
                 <!--<input id="ua_code" class="form-control green input-text" placeholder="" onkeyup="javascript:parse_UA()" type="text" value="" />-->
             </div>
+            <copy-btn :text="userAgent" />
+
             <ui-article v-if="result">
                 <h3>浏览器系统信息</h3>
                 <table>
@@ -55,6 +57,12 @@
                 result: null,
                 page: {
                     menu: [
+                        {
+                            type: 'icon',
+                            icon: 'info',
+                            href: 'https://project.yunser.com/products/e2d2f3f09afd11e99db4c5f911656178',
+                            target: '_blank'
+                        },
                         {
                             type: 'icon',
                             icon: 'help',
