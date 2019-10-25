@@ -14,6 +14,8 @@ const CronVerification = resolve => require(['@/views/CronVerification'], resolv
 const Ping = resolve => require(['@/views/Ping'], resolve)
 const ShortUrl = resolve => require(['@/views/ShortUrl'], resolve)
 const IpToNumber = resolve => require(['@/views/IpToNumber'], resolve)
+const IpGenerator = resolve => require(['@/views/IpGenerator'], resolve)
+const MacGenerator = resolve => require(['@/views/MacGenerator'], resolve)
 const Websocket = resolve => require(['@/views/Websocket'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -71,6 +73,14 @@ let routes = [
     {
         path: '/ip_to_number',
         component: IpToNumber
+    },
+    {
+        path: '/ip/generator',
+        component: IpGenerator
+    },
+    {
+        path: '/mac/generator',
+        component: MacGenerator
     },
     {
         path: '/websocket',

@@ -40,6 +40,18 @@
                                 to: '/ip_to_number'
                             },
                             {
+                                name: 'IP 生成',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/ip/generator'
+                            },
+                            {
+                                name: 'MAC 地址生成',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/mac/generator'
+                            },
+                            {
                                 name: 'Ping',
                                 desc: '',
                                 icon: '/static/img/network_ping.svg',
@@ -73,14 +85,14 @@
                     {
                         name: '其他',
                         apps: [
-                            
+
                             {
                                 name: '短网址',
                                 desc: '',
                                 icon: '/static/img/url.svg',
                                 to: '/short_url'
                             },
-                            
+
 
                             {
                                 name: 'Cron 表达式验证',
