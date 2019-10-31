@@ -6,6 +6,7 @@
                     <ui-menu-item value="1" title=":" />
                     <ui-menu-item value="2" title="-" />
                     <ui-menu-item value="3" title="空格" />
+                    <ui-menu-item value="4" title="无" />
                 </ui-select-field>
                 <br>
                 <br>
@@ -41,7 +42,7 @@
                 <ui-text-field class="simple" v-model="d" label="" hintText="" />
                 <br> -->
                 <div>
-                    <ui-raised-button class="btn" label="随机生成" primary @click="make" />
+                    <ui-raised-button class="btn" label="随机生成" primary @click="makeRandom" />
                     <ui-raised-button class="btn" label="顺序生成" secondary @click="makeOrder" />
                 </div>
             </div>
@@ -101,7 +102,7 @@
             },
             debug() {
             },
-            makeOrder() {
+            makeRandom() {
                 let _this = this
 
                 function ishex(num){
@@ -128,10 +129,8 @@
                     return result
                 }
 
-
-                let prefix1 = this.prefix1
-                if (prefix1) {
-                    if (prefix1.length !== 2 || !ishex(prefix1)) {
+                if (this.prefix1) {
+                    if (this.prefix1.length !== 2 || !ishex(this.prefix1)) {
                         this.$message({
                             type: 'danger',
                             text: '请输入有效前缀'
@@ -180,7 +179,7 @@
                 let results = []
                 for (let i = 0; i < number; i++) {
                     let arr = [
-                        prefix1 || makePark(),
+                        this.prefix1 || makePark(),
                         this.prefix2 || makePark(),
                         this.prefix3 || makePark(),
                         this.prefix4 || makePark(),
@@ -195,18 +194,18 @@
 
                     var res = "";
 
-                    if(this.type === '1'){
-                        res = arr.join(':')
-                    }else if(this.type === '2'){
-                        res = arr.join('-')
-                    }else if(this.type === '3'){
-                        res = arr.join(' ')
+                    let typeMap = {
+                        '1': ':',
+                        '2': '-',
+                        '3': ' ',
+                        '4': '',
                     }
+                    res = arr.join(typeMap[this.type])
                     results.push(res)
                 }
                 this.detail = results.join('\n')
             },
-            make() {
+            makeOrder() {
                 let _this = this
 
                 function ishex(num){
@@ -288,7 +287,26 @@
                 let prefix6 = '00'
 
                 function plug(mac) {
-                    
+                    let arr = mac.split(':')
+                    arr = arr.map(item => parseInt(item, 16))
+                    // console.log('arr', arr)
+                    // if
+                    let idx
+                    let out = true
+                    for (let i = arr.length - 1; i >= 0 ; i--) {
+                        arr[i]++
+                        if (arr[i] > 255) {
+                            arr[i] = 0
+                            out = false
+                        } else {
+                            out = true
+                        }
+                        if (out) {
+                            break
+                        }
+                    }
+                    arr = arr.map(item => item.toString(16).padStart(2, '0'))
+                    return arr.join(':')
                 }
 
                 let number = this.number || 1
@@ -321,6 +339,13 @@
                     results.push(mac)
                     mac = plug(mac)
                 }
+                let typeMap = {
+                    '1': ':',
+                    '2': '-',
+                    '3': ' ',
+                    '4': '',
+                }
+                results = results.map(item => item.replace(':', typeMap[this.type]))
                 this.detail = results.join('\n')
             },
             ip2long(ip) {
