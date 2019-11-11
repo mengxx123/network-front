@@ -6,6 +6,11 @@
                     <ui-text-field class="input-ua" v-model="number" label="数量" hintText="1" />
                 </div>
             </div>
+            <ui-select-field v-model="os" label="操作系统">
+                <ui-menu-item value="" title="无"/>
+                <ui-menu-item value="win10" title="windows 10"/>
+            </ui-select-field>
+            <br>
             <ui-raised-button class="btn" primary label="生成" @click="make" />
             <br>
             <textarea class="textarea" v-model="result" rows="16" v-if="result"></textarea>
@@ -23,6 +28,7 @@
     export default {
         data () {
             return {
+                os: 'win10',
                 userAgent: '',
                 result: null,
                 page: {
@@ -53,7 +59,16 @@
                     // const userAgent = new UserAgent()
                     // console.log(userAgent.toString());
                     // result.push(userAgent.toString())
-                    result.push(randomUseragent.getRandom())
+                    if (this.os) {
+                        if (this.os === 'win10') {
+                            result.push(`Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36`)
+                        }
+                    } else {
+                        result.push(randomUseragent.getRandom(function (ua) {
+                            console.log('ua', ua)
+                            return ua.osName === 'Mac OS';
+                        }))
+                    }
                 }
                 this.result = result.join('\n')
             }
