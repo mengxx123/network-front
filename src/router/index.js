@@ -17,6 +17,10 @@ const IpToNumber = resolve => require(['@/views/IpToNumber'], resolve)
 const IpGenerator = resolve => require(['@/views/IpGenerator'], resolve)
 const MacGenerator = resolve => require(['@/views/MacGenerator'], resolve)
 const Websocket = resolve => require(['@/views/Websocket'], resolve)
+const Ipv6Check = resolve => require(['@/views/Ipv6Check'], resolve)
+const Ipv6Range = resolve => require(['@/views/Ipv6Range'], resolve)
+const Ipv6Generator = resolve => require(['@/views/Ipv6Generator'], resolve)
+const IpConvert = resolve => require(['@/views/IpConvert'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -29,6 +33,22 @@ let routes = [
     {
         path: '/ip',
         component: Ip
+    },
+    {
+        path: '/ip/check',
+        component: Ipv6Check
+    },
+    {
+        path: '/ip/convert',
+        component: IpConvert
+    },
+    {
+        path: '/ip/range',
+        component: Ipv6Range
+    },
+    {
+        path: '/ipv6/generator',
+        component: Ipv6Generator
     },
     {
         path: '/ip/calculator',

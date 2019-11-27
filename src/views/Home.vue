@@ -13,7 +13,7 @@
             return {
                 groups: [
                     {
-                        name: 'IP 端口',
+                        name: 'IP',
                         apps: [
                             {
                                 name: 'IP 查询',
@@ -46,22 +46,28 @@
                                 to: '/ip/generator'
                             },
                             {
-                                name: 'MAC 地址生成',
+                                name: 'IPv6 地址校验',
                                 desc: '',
                                 icon: '/static/img/ip.svg',
-                                to: '/mac/generator'
+                                to: '/ip/check'
                             },
                             {
-                                name: 'Ping',
+                                name: 'IPv6 地址范围',
                                 desc: '',
-                                icon: '/static/img/network_ping.svg',
-                                to: '/ping'
+                                icon: '/static/img/ip.svg',
+                                to: '/ip/range'
                             },
                             {
-                                name: '端口扫描',
+                                name: 'IPv6 生成',
                                 desc: '',
-                                icon: '/static/img/port.svg',
-                                to: '/port'
+                                icon: '/static/img/ip.svg',
+                                to: '/ipv6/generator'
+                            },
+                            {
+                                name: 'IP 地址转换',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/ip/convert'
                             },
                         ]
                     },
@@ -85,7 +91,24 @@
                     {
                         name: '其他',
                         apps: [
-
+                            {
+                                name: 'MAC 地址生成',
+                                desc: '',
+                                icon: '/static/img/ip.svg',
+                                to: '/mac/generator'
+                            },
+                            {
+                                name: 'Ping',
+                                desc: '',
+                                icon: '/static/img/network_ping.svg',
+                                to: '/ping'
+                            },
+                            {
+                                name: '端口扫描',
+                                desc: '',
+                                icon: '/static/img/port.svg',
+                                to: '/port'
+                            },
                             {
                                 name: '短网址',
                                 desc: '',

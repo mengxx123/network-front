@@ -14,12 +14,12 @@
             <div v-if="type === 'custom'">
                 <ui-select-field v-model="os" label="操作系统">
                     <ui-menu-item value="" title="无限制"/>
-                    <ui-menu-item :value="item.value" :title="item.label" v-for="item in osList"/>
+                    <ui-menu-item :value="item.value" :title="item.label" v-for="item, index in osList" :key="index" />
                 </ui-select-field>
                 <br>
                 <ui-select-field v-model="browser" label="浏览器">
                     <ui-menu-item value="" title="无限制"/>
-                    <ui-menu-item :value="item.value" :title="item.label" v-for="item in browserList"/>
+                    <ui-menu-item :value="item.value" :title="item.label" v-for="item, index in browserList" :key="index" />
                 </ui-select-field>
                 <br>
             </div>
